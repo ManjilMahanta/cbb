@@ -28,39 +28,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🎬 Modal video preview open
+  // 🎬 Fullscreen video preview (no modal)
   document.querySelectorAll(".preview-video").forEach((video) => {
     video.addEventListener("click", () => {
-      const modal = document.getElementById("videoModal");
-      const modalVideo = document.getElementById("modalVideo");
-      modalVideo.src = video.getAttribute("src");
-      modalVideo.muted = false;
-      modalVideo.play();
-      modal.style.display = "flex";
+      video.muted = false;
+      video.controls = true;
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+    });
+
+    video.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        video.controls = false;
+        video.muted = true;
+      }
     });
   });
-
-  // ❌ Close modal
-  const closeModal = document.getElementById("closeModal");
-  if (closeModal) {
-    closeModal.addEventListener("click", () => {
-      const modal = document.getElementById("videoModal");
-      const modalVideo = document.getElementById("modalVideo");
-      modalVideo.pause();
-      modalVideo.src = "";
-      modal.style.display = "none";
-    });
-  }
-
-  // 🔇 Mute toggle
-  const muteToggle = document.getElementById("muteToggle");
-  if (muteToggle) {
-    muteToggle.addEventListener("click", () => {
-      const modalVideo = document.getElementById("modalVideo");
-      modalVideo.muted = !modalVideo.muted;
-      muteToggle.textContent = modalVideo.muted ? "🔇" : "🔊";
-    });
-  }
 
   // ⌨️ Arrow keys for photo viewer
   document.addEventListener("keydown", (e) => {
