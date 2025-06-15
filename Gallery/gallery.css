@@ -1,0 +1,153 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY with animated gradient */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #fef9f3, #f5d8b0, #fbdca7, #ffe4c1);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  background-color: #f4c56c;
+  color: #000;
+}
+
+/* 🔗 Social Icons */
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-icons a {
+  color: #a76b1f;
+  font-size: 1.4rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #7a5016;
+  transform: scale(1.2);
+}
+
+/* BURGER menu hidden (optional if not used) */
+.burger {
+  display: none;
+}
+
+/* GALLERY CONTROLS */
+.gallery-controls {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.gallery-controls h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #a76b1f;
+}
+
+.gallery-controls select {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  background: #fff;
+}
+
+/* GALLERY GRID */
+.gallery-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.gallery-display img,
+.gallery-display video {
+  width: 280px;
+  max-width: 90vw;
+  height: 180px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-display img:hover,
+.gallery-display video:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .burger {
+    display: block;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+}

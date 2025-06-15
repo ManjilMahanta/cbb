@@ -1,4 +1,4 @@
-// Global photo index for the photo viewer
+// 🌄 Photo Viewer Logic
 let currentIndex = 1;
 
 function changeImage(direction) {
@@ -8,21 +8,27 @@ function changeImage(direction) {
   document.getElementById("main-photo").src = `/Home/assets/photos/${currentIndex}.JPG`;
 }
 
+// 🔁 On DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Fade in body on page load
+  // ✅ Fade-in effect on page load
   document.body.classList.add("fade-in");
 
-  // 🍔 Burger menu toggle
+  // ✅ Hide loader after DOM ready
+  const loader = document.getElementById("loader");
+  if (loader) {
+    setTimeout(() => loader.style.display = "none", 300);
+  }
+
+  // ✅ Burger menu toggle
   const burger = document.querySelector(".burger");
   const navLinks = document.querySelector(".nav-links");
-
   if (burger && navLinks) {
     burger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
     });
   }
 
-  // 🎬 Video modal open
+  // 🎬 Modal video preview open
   document.querySelectorAll(".preview-video").forEach((video) => {
     video.addEventListener("click", () => {
       const modal = document.getElementById("videoModal");
@@ -35,22 +41,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ❌ Close modal
-  document.getElementById("closeModal").addEventListener("click", () => {
-    const modal = document.getElementById("videoModal");
-    const modalVideo = document.getElementById("modalVideo");
-    modalVideo.pause();
-    modalVideo.src = "";
-    modal.style.display = "none";
-  });
+  const closeModal = document.getElementById("closeModal");
+  if (closeModal) {
+    closeModal.addEventListener("click", () => {
+      const modal = document.getElementById("videoModal");
+      const modalVideo = document.getElementById("modalVideo");
+      modalVideo.pause();
+      modalVideo.src = "";
+      modal.style.display = "none";
+    });
+  }
 
-  // 🔇 Toggle mute
-  document.getElementById("muteToggle").addEventListener("click", () => {
-    const modalVideo = document.getElementById("modalVideo");
-    modalVideo.muted = !modalVideo.muted;
-    document.getElementById("muteToggle").textContent = modalVideo.muted ? "🔇" : "🔊";
-  });
+  // 🔇 Mute toggle
+  const muteToggle = document.getElementById("muteToggle");
+  if (muteToggle) {
+    muteToggle.addEventListener("click", () => {
+      const modalVideo = document.getElementById("modalVideo");
+      modalVideo.muted = !modalVideo.muted;
+      muteToggle.textContent = modalVideo.muted ? "🔇" : "🔊";
+    });
+  }
 
-  // ⌨️ Left/right arrow for photo viewer
+  // ⌨️ Arrow keys for photo viewer
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
       changeImage(1);
@@ -58,9 +70,23 @@ document.addEventListener("DOMContentLoaded", () => {
       changeImage(-1);
     }
   });
+
+  // 🧠 Scroll-triggered slide-in effect
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // only once
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll(".scroll-fade").forEach((el) => observer.observe(el));
 });
 
-// 🌐 Smooth fade-out when navigating pages
+// 🔁 Fade-out on link navigation
 document.querySelectorAll('a[href]').forEach(link => {
   link.addEventListener('click', function (e) {
     const href = this.getAttribute('href');

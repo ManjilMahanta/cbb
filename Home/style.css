@@ -339,3 +339,32 @@ body.fade-in {
     right: 10px;
   }
 }
+/* 🔃 Loader Wrapper */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+/* 🔄 Loader Style */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #a76b1f;
+  border-top: 6px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

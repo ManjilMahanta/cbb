@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | The Vow Story</title>
+  <link rel="stylesheet" href="gallery.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- 🔶 Navbar (same as other pages) -->
+  <header class="navbar">
+    <div class="logo"><img src="/Home/assets/logo.jpg" alt="Site Logo" /></div>
+    <nav class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/Services/services.html">Services</a>
+      <a href="/Gallery/gallery.html" class="active">Gallery</a>
+      <a href="/Contact/contact.html">Contact</a>
+    </nav>
+    <div class="social-icons">
+      <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="burger"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <!-- 🎯 Category Selector -->
+  <section class="gallery-controls">
+    <h2>Choose a Gallery</h2>
+    <select id="categorySelector" onchange="loadGallery()">
+      <option value="wedding">Engagement, Pre-wedding & Wedding</option>
+      <option value="cinematic">Cinematic Wedding Films & Story Telling</option>
+      <option value="traditional">Traditional Photography & Couple Portraits</option>
+    </select>
+  </section>
+
+  <!-- 🖼️ Gallery Display -->
+  <section class="gallery-display" id="galleryDisplay"></section>
+
+  <script src="gallery.js" defer></script>
+</body>
+</html>
