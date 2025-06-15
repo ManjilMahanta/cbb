@@ -5,7 +5,7 @@ function changeImage(direction) {
   currentIndex += direction;
   if (currentIndex < 1) currentIndex = 10;
   if (currentIndex > 10) currentIndex = 1;
-  document.getElementById("main-photo").src = `/Home/assets/photos/${currentIndex}.JPG`;
+  document.getElementById("main-photo").src = `Home/assets/photos/${currentIndex}.JPG`;
 }
 
 // 🔁 On DOM Ready
